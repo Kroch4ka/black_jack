@@ -1,8 +1,8 @@
 # frozen_string_literal: true
-require_relative 'player/ayer'
+require_relative 'base_player'
 class Dealer < BasePlayer
   DEFAULT_NAME = 'Dealer'
-  def initialize(_, started_bank)
-    super DEFAULT_NAME, started_bank
+  def initialize
+    super DEFAULT_NAME
   end
 end

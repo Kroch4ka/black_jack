@@ -2,9 +2,11 @@
 
 class BasePlayer
 
-  attr_reader :name, :bank
+  STARTED_BANK = 100
 
-  def initialize(name, started_bank)
+  attr_reader :name, :bank, :cards
+
+  def initialize(name, started_bank = STARTED_BANK)
     @bank = started_bank
     @name = name
     @cards = []
@@ -12,17 +14,30 @@ class BasePlayer
 
   def add_card(card)
     @cards << card
+    self
   end
-  
+
   def bet(value)
-    ban -= value if enough_for_bet? value
+    if enough_for_bet? value
+      self.bank -= value
+      value
+    end
   end
-  
+
   def enough_for_bet?(value)
     bank - value >= 0
   end
 
-  private
+  def get_money(value)
+    @bank += value
+    self
+  end
 
-  attr_reader :cards
+  def total
+    cards.reduce(0) { |first, second| first + second.value }
+  end
+
+  protected
+
+  attr_accessor :bank
 end
