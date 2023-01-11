@@ -1,27 +1,31 @@
 # frozen_string_literal: true
 
 class Card
-  SUITS = %i[diamond heart club spade].freeze
-  RANK_MAP = {
-    '2' => 2,
-    '3' => 3,
-    '4' => 4,
-    '5' => 5,
-    '6' => 6,
-    '7' => 7,
-    '8' => 8,
-    '9' => 9,
+  SUITS = %i[trump diamonds hearts clubs spades].freeze
+  IMAGE_RANKS = {
+    ace: 11,
     jack: 10,
     queen: 10,
-    king: 10,
-    ace: 11
+    king: 10
   }.freeze
+  NUMBER_RANKS = [2, 3, 4, 5, 6, 7, 8, 9, 10].freeze
 
-  attr_reader :rank, :suit, :value
+  attr_reader :rank, :suit
 
   def initialize(rank, suit)
     @rank = rank
     @suit = suit
-    @value = RANK_MAP[@rank]
+  end
+
+  def value
+    return rank.to_i if digit_rank?
+
+    IMAGE_RANKS[rank]
+  end
+
+  private
+
+  def digit_rank?
+    rank.to_s =~ /[2-9]|(10)/
   end
 end
