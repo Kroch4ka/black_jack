@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Card
-  SUITS = %i[trump diamonds hearts clubs spades].freeze
+  SUITS = %i[diamond heart club spade].freeze
   IMAGE_RANKS = {
     ace: 11,
     jack: 10,
@@ -22,8 +22,6 @@ class Card
 
     IMAGE_RANKS[rank]
   end
-
-  private
 
   def digit_rank?
     rank.to_s =~ /[2-9]|(10)/

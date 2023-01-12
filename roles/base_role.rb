@@ -2,7 +2,7 @@
 
 class BaseRole
 
-  attr_reader :player
+  attr_reader :player, :points, :hand
 
   def initialize(player_instance)
     @player = player_instance
@@ -19,12 +19,12 @@ class BaseRole
 
   private
 
-  attr_reader :hand
-  attr_accessor :points
+  attr_writer :points
 
   def calculate_points
+    self.points = 0
     hand.each do |card|
-      self.points += card.rank.eql?(:ace) ? calculate_ace_value : card.value
+      self.points += card.rank == :ace ? calculate_ace_value : card.value
     end
   end
 

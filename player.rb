@@ -13,9 +13,13 @@ class Player
   end
 
   def place_bet(bet)
-    raise PlayerError, 'Not enough money' unless enough_money_for_bet? bet
+    raise PlayerError, "Not enough money, bet = #{bet}, bank = #{bank}" unless enough_money_for_bet? bet
 
     self.bank -= bet
+  end
+
+  def increase_bank(bank)
+    self.bank += bank
   end
 
   private
@@ -23,10 +27,6 @@ class Player
   attr_writer :bank
 
   def enough_money_for_bet?(bet)
-    @bank - bet >= 0
-  end
-
-  def take_money(money)
-    self.bank += money
+    bank - bet >= 0
   end
 end
