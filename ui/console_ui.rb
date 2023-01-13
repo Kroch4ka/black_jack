@@ -49,12 +49,16 @@ class ConsoleUI < BaseConsoleUI
 
   private_class_method def self.draw_game_field(game)
     puts %(
-      Дилер - количество очков: #{current_points(game.dealer.points)}
+      Игрок: Дилер
+      #{current_points(game.dealer.points)}
       Текущий баланс: #{game.dealer.player.bank}
+
       #{dealer_cards_images game}
       _______________________________________________________________
       #{cards_images game.player.hand}
-      #{game.player.player.name} - количество очков: #{current_points(game.player.points)}
+
+      Игрок: #{game.player.player.name}
+      #{current_points(game.player.points)}
       Текущий баланс: #{game.player.player.bank}
     )
   end
