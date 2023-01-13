@@ -7,7 +7,6 @@ require_relative 'errors/game_error'
 
 class Game
 
-  DEAD_HEAT = :dead_heat
   DEFAULT_BET = 10
 
   attr_reader :winner, :player, :dealer, :deck
@@ -76,7 +75,7 @@ class Game
                     :player
                   end
     self.winner = :dealer if player.points > 21
-    self.winner = DEAD_HEAT if player.points == dealer.points
+    self.winner = :dead_heat if player.points == dealer.points
   end
 
   def winner_bank_allocation

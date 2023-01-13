@@ -24,7 +24,7 @@ class ConsoleUI < BaseConsoleUI
 
           puts 'Выйграл дилер!' if game_session.winner == :dealer
           puts 'Выйграл игрок!' if game_session.winner == :player
-          puts 'Ничья!' if game_session.winner == Game::DEAD_HEAT
+          puts 'Ничья!' if game_session.winner == :dead_heat
           break
         end
 
